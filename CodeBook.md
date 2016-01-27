@@ -1,13 +1,18 @@
 # Code book for analysis
 
 ## Data Sources and Background
-Data for this project is downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+Data is downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
 The data is based on work originally conducted by:
 
 Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
 
 See http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones for further details
+
+The below is copied directly from README in ZIP file from download:
+"The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+
+The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain."
 
 The downloaded data is a ZIP file which creates a folder "UCI HAR Dataset".  There are two sub-folders, "test" and "train".  For purposes of this project, we are asked to ignore Inertial Signals, a further sub-folder contained under test/ and train/
 
@@ -40,4 +45,39 @@ For simplicity of reading, measurements starting with tBody are renamed as timeB
 
 Lastly, a dataset tidyData is creating using group_by(subject,activity) and summzrize_each(funs(mean)) using dplyr.  This final dataset contains 180 rows (30 subjects x 6 activities) and 68 columns (subject, activity, 66 mean or std measurements).  The data displayed in the measurement columns is the mean for that measurement across multiple raw records for subject and activity
 
-## Variable in the final tidyData
+## Contents of the final tidyData
+
+The tidyData file contains the average over multiple samples for 66 measurements, summarized by subject (number from 1-30) and activity (one of 6 activities monitored).  Each subject-activity combination exists so there are 180 rows.
+
+Adapted from features_info.txt in ZIP file:
+
+Raw variables calculated from the time domain start with t.  FFT applied to raw variables produces additional variables that start with f.  To simplify reading, this script converts t -> time and f -> freq at the front of the variable names.
+
+As described in the README, signals were split as to whether they are Body acceleration or Gravity accelerations.  This is reflected by a variable containing the word Body or Gravity.
+
+As described in the README, signals came from the accelerometer or the gyroscope.  This is reflected by a variable name containing the word Acc or Gyro.
+
+Jerk and Mag (magnitude) componenst were calculated for select variables.  The features_info.txt explains this process as "Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag)."
+
+Accordingly, the final variables included in tidyData are:
+* subject - integer ranging from 1-30 corresponding to 30 unique subjects
+* activity - character taking on one of the 6 unique activities studied
+* timeGravityAcc_[mean or std]_[X or Y or Z] - 6 variables with the mean/std of the XYZ components of gravity
+* timeGravityAccMag_[mean or std] - 2 variables representing the total magnitude of gravity
+* timeBodyAcc_[mean or std]_[X or Y or Z] - 6 variables with the mean/std of the XYZ components of body acceleration
+* timeBodyAccJerk_[mean or std]_[X or Y or Z] - 6 variables with the mean/std of the XYZ jerk components of body acceleration
+* timeBodyAccMag_[mean or std] - 2 variables representing the total magnitude of body acceleration
+* timeBodyAccJerkMag_[mean or std] - 2 variables representing the total magnitude of jerk body acceleration
+* timeBodyGyro_[mean or std]_[X or Y or Z] - 6 variables with the mean/std of the XYZ components of gyroscope
+* timeBodyGyroJerk_[mean or std]_[X or Y or Z] - 6 variables with the mean/std of the XYZ jerk components of gyroscope
+* timeBodyGyroMag_[mean or std] - 2 variables representing the total magnitude of gyroscope
+* timeBodyGyroJerkMag_[mean or std] - 2 variables representing the total magnitude of gyroscope jerk
+* freqBodyAcc_[mean or std]_[X or Y or Z] - 6 variables with the mean/std of the FFT of XYZ components of body acceleration
+* freqBodyAccJerk_[mean or std]_[X or Y or Z] - 6 variables with the mean/std of the FFT of XYZ jerk components of body acceleration
+* freqBodyAccMag_[mean or std] - 2 variables representing the total magnitude of FFT of body acceleration
+* freqBodyGyro_[mean or std]_[X or Y or Z] - 6 variables with the mean/std of the FFT of XYZ components of gyroscope
+* freqBodyBodyAccJerkMag_[mean or std] - 2 variables
+* freqBodyBodyGyroMag_[mean or std] - 2 variables
+* freqBodyBodyGyroJerkMag_[mean or std] - 2 variables
+
+As per the information from the authors, "- Features are normalized and bounded within [-1,1]."  This will apply to all variables in the tidy dataset.  No modifications to this data have been performed
