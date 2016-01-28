@@ -27,7 +27,7 @@ The main folder of the download includes a README and a features_info.txt that d
 * features.txt has 561 rows and 2 columns, containing a map from column number to column description
 
 ## Data Processing and Transformations
-The script was run on 27-Jan-2016 using 64-bit R 3.2.3 on a Windows 7 machine.  The package dplyr is required.
+The script run_analysis.R included in this repo was run on 28-Jan-2016 using 64-bit R 3.2.3 on a Windows 7 machine.  The package dplyr is required.
 
 The overall processing is to load these raw data files and then piece them together like a puzzle.  Specifically, the following actions are performed in the script:
 
@@ -79,4 +79,4 @@ Accordingly, the final variables included in tidyData are:
 * freqBodyBodyGyroMag_[mean or std] - 2 variables with the mean/std of the FFT of Gryo magnitude
 * freqBodyBodyGyroJerkMag_[mean or std] - 2 variables with the mean/std of the FFT of Gyro Jerk magnitude
 
-As per the information from the authors, "- Features are normalized and bounded within [-1,1]."  As such, there is no dimension to the variables.  No furthermodifications to this data have been performed
+As per the information from the experiment authors, "- Features are normalized and bounded within [-1,1]."  As such, there is no dimension or unit to the variables.  No further modifications to this data have been performed
