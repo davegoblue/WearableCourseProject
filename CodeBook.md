@@ -75,8 +75,8 @@ Accordingly, the final variables included in tidyData are:
 * freqBodyAccJerk_[mean or std]_[X or Y or Z] - 6 variables with the mean/std of the FFT of XYZ jerk components of body acceleration
 * freqBodyAccMag_[mean or std] - 2 variables representing the total magnitude of FFT of body acceleration
 * freqBodyGyro_[mean or std]_[X or Y or Z] - 6 variables with the mean/std of the FFT of XYZ components of gyroscope
-* freqBodyBodyAccJerkMag_[mean or std] - 2 variables
-* freqBodyBodyGyroMag_[mean or std] - 2 variables
-* freqBodyBodyGyroJerkMag_[mean or std] - 2 variables
+* freqBodyBodyAccJerkMag_[mean or std] - 2 variables with the mean/std of the FFT of Body Jerk magnitude
+* freqBodyBodyGyroMag_[mean or std] - 2 variables with the mean/std of the FFT of Gryo magnitude
+* freqBodyBodyGyroJerkMag_[mean or std] - 2 variables with the mean/std of the FFT of Gyro Jerk magnitude
 
-As per the information from the authors, "- Features are normalized and bounded within [-1,1]."  This will apply to all variables in the tidy dataset.  No modifications to this data have been performed
+As per the information from the authors, "- Features are normalized and bounded within [-1,1]."  As such, there is no dimension to the variables.  No furthermodifications to this data have been performed
