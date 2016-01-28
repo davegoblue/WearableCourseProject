@@ -17,3 +17,5 @@ A ZIP file of relevant text files representing experiment outcomes was obtained 
 * Bring these 8 files together in to a single data frame with sensible row and column descriptions
 * Extract only those measurements (variables) associated to a mean or standard deviation
 * Create a tidy data set with the average of each variable for each activity and each subject
+
+Please see the CodeBook in this repo for additional details about the specific data sets downloaded, processing performed, and variables included in the final tidyData.
