@@ -1,5 +1,12 @@
 # Code book for analysis
 
+
+## Contents
+* Data Sources and Background - source of the data, two paragraphs directly quoted from the README provided by the experiment's original autgors, description of the 8 files used for this project
+* Data processing and transformation - pseudo-code for the run_analysis.R script, including variable renaming
+* Contents of the final tidyData - description of the final tidyData set, including dimensions and variables 
+
+
 ## Data Sources and Background
 Data is downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
@@ -26,6 +33,7 @@ The main folder of the download includes a README and a features_info.txt that d
 * activity_labels.txt has 6 rows and 2 columns, containing a map from activity number to activity description
 * features.txt has 561 rows and 2 columns, containing a map from column number to column description
 
+
 ## Data Processing and Transformations
 The script run_analysis.R included in this repo was run on 28-Jan-2016 using 64-bit R 3.2.3 on a Windows 7 machine.  The package dplyr is required.
 
@@ -43,6 +51,7 @@ The 561 measasurement columns are then analyzed for whether they contain the str
 For simplicity of reading, measurements starting with tBody are renamed as timeBody, measurements starting with fBody are renamed as freqBody, and measurements starting with tGravity are renamed as timeGravity.  The () were extracted out of the variable names, and the dash(-) were converted to underscore(_) for easier use without requiring quoting.  The _ were left in the variable names since timeBodyAcc_mean_X is more readable than timeBodyAccmeanX.
 
 Lastly, a dataset tidyData is creating using group_by(subject,activity) and summzrize_each(funs(mean)) using dplyr.  This final dataset contains 180 rows (30 subjects x 6 activities) and 68 columns (subject, activity, 66 mean or std measurements).  The data displayed in the measurement columns is the mean for that measurement across multiple raw records for subject and activity
+
 
 ## Contents of the final tidyData
 
