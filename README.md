@@ -1,6 +1,8 @@
 # WearableCourseProject
 Create tidy data for a wearable dataset as part of a Coursera project
 
+Wearable technology is creating an exciting area for data analysis.  In this course project, we were asked to download results of an experiment based on data from the acceleraometer and gyroscope of a Samsung Galaxy S smartphone worn by 30 subjects as they participated in six types of activities.  The end goal was to create a tidy data set by subject and activity that contains the average value for all experimental measurements that were reported as being either a mean or a standard deviation.
+
 This repo contains course project work for "Getting and Cleaning Data" on Coursera
 
 * There is a single script called run_analysis.R which loads, cleans, subsets, and summzrizes the project data
