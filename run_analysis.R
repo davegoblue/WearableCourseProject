@@ -30,18 +30,21 @@ checkDims <- function(mainData,activityCol,subjCol,featureRow,typeFile="too lazy
 
 
 ### Step A - read in all the files (on my computer, they are in fileDirMain and then \test and \train)
-fileDirMain <- "C:\\Users\\Dave\\Documents\\Personal\\Learning\\Coursera\\2016 01 - Data Science\\Module 03 - Getting and Cleaning Data\\Course Project Data\\UCI HAR Dataset\\"
+## fileDirMain <- "C:\\Users\\Dave\\Documents\\Personal\\Learning\\Coursera\\2016 01 - Data Science\\Module 03 - Getting and Cleaning Data\\Course Project Data\\UCI HAR Dataset"
+## Recasting this to home directory as per submission request
 
-featureData <- readText(paste0(fileDirMain,"features.txt"))
-activityLabels <- readText(paste0(fileDirMain,"activity_labels.txt"))
+fileDirMain <- getwd()
+
+featureData <- readText(paste0(fileDirMain,"\\features.txt"))
+activityLabels <- readText(paste0(fileDirMain,"\\activity_labels.txt"))
 
 xTestData <- readText(paste0(fileDirMain,"\\test\\X_test.txt"))
 yTestData <- readText(paste0(fileDirMain,"\\test\\y_test.txt"))
-subjTestData <- readText(paste0(fileDirMain,"test\\subject_test.txt"))
+subjTestData <- readText(paste0(fileDirMain,"\\test\\subject_test.txt"))
 
-xTrainData <- readText(paste0(fileDirMain,"train\\X_train.txt"))
-yTrainData <- readText(paste0(fileDirMain,"train\\y_train.txt"))
-subjTrainData <- readText(paste0(fileDirMain,"train\\subject_train.txt"))
+xTrainData <- readText(paste0(fileDirMain,"\\train\\X_train.txt"))
+yTrainData <- readText(paste0(fileDirMain,"\\train\\y_train.txt"))
+subjTrainData <- readText(paste0(fileDirMain,"\\train\\subject_train.txt"))
 
 
 ## Confirm that dimensions are OK for later combinations
@@ -117,3 +120,4 @@ tidyData <- analysisData %>% group_by(subject,activity) %>% summarize_each(funs(
 
 print(paste0("After summarizing, tidyData is ",nrow(tidyData)," by ",ncol(tidyData)))
 write.csv(tidyData,"tidyData.csv",row.names=FALSE)
+write.table(tidyData,"tidyData.txt",row.names=FALSE)
